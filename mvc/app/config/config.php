@@ -12,14 +12,14 @@ error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
 define('DB_HOST', 'mysql');
 define('DB_USER', 'root');
 define('DB_PASS', 'rootadm');
-define('DB_NAME', 'shareposts');
+define('DB_NAME', 'cmsdb');
 
 // App Root
 define('APPROOT', dirname(dirname(__FILE__)));
 // valor que está nesta constante /var/www/html/mvc/app
 
 // URL ROOT PARA LINKS
-define('URLROOT', 'http://' . $_SERVER["SERVER_NAME"] . '/shareposts');
+define('URLROOT', 'http://' . $_SERVER["SERVER_NAME"] . '/mvc');
 
 // Site Name
 define('SITENAME', 'SharePosts');

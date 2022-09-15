@@ -95,7 +95,7 @@ class User {
 
       // Find user by id
       public function getUserById($id){
-        $this->db->query('SELECT * FROM users WHERE id = :id');
+        $this->db->query('SELECT id,name,email,created_at FROM users WHERE id = :id');
         // Bind value
         $this->db->bind(':id', $id);
 

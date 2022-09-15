@@ -22,7 +22,7 @@ define('APPROOT', dirname(dirname(__FILE__)));
 define('URLROOT', 'http://' . $_SERVER["SERVER_NAME"] . '/mvc');
 
 // Site Name
-define('SITENAME', 'SharePosts');
+define('SITENAME', 'CMS');
 
 //APP VERSION
 define('APPVERSION', '1.0.0');

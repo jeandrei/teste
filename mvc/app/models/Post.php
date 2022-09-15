@@ -8,6 +8,69 @@
             $this->db = new Database;
         }
 
+
+        public function getPostsActive(){
+            $this->db->query('SELECT 
+                                posts.title, 
+                                posts.body, 
+                                posts.id as postId,
+                                posts.user_id as userId, 
+                                posts.created_at as postCreated FROM 
+                                    posts 
+                                WHERE 
+                                    active = 1 
+                                ORDER BY 
+                                    posts.created_at 
+                                DESC
+                              ');            
+            $results = $this->db->resultSet(); 
+            return $results;           
+        }
+
+        public function getPostsByTag($tag){
+            $this->db->query('SELECT 
+                                tags.tag, 
+                                posts.title, 
+                                posts.body, 
+                                posts.id as postId, 
+                                posts.user_id as userId,
+                                posts.created_at as postCreated
+                              FROM 
+                                posts, tags 
+                              WHERE 
+                                posts.tag_id = tags.id 
+                              AND 
+                                tag = :tag 
+                              AND 
+                                posts.active = 1 
+                              ORDER BY 
+                                posts.created_at 
+                              DESC
+                              ');
+            $this->db->bind(':tag',$tag);
+            $results = $this->db->resultSet(); 
+
+            if($this->db->rowCount() > 0){
+                foreach($results as $post){
+                    $rows[] = [
+                        'id' => $post->postId,            
+                        'title' => $post->title,
+                        'body'=> $post->body,
+                        'created_at' => $post->postCreated,
+                        'image' => $this->getFirstFilePost($post->postId),
+                        'n_image' => $this->getNumImagesPost($post->postId)
+                    ];
+                }
+            } else {
+                $rows[] = [
+                    'id' => null,            
+                    'title' => 'Tag inexistente',
+                    'body'=> 'Verifique a tag informada'
+                ];
+            }
+           
+            return $rows;           
+        }
         
         public function getPosts(){
             $this->db->query('SELECT *,

@@ -14,7 +14,8 @@ use cmsdb;
 
 CREATE TABLE `tags` (
   `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,  
-  `tag` varchar(255) NULL  
+  `tag` varchar(255) NULL ,
+  `descricao` varchar(255) NULL
 ) auto_increment=0,
   ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -24,6 +25,7 @@ CREATE TABLE `posts` (
   `tag_id` int(11) NOT NULL DEFAULT 1,
   `title` varchar(255) NOT NULL,
   `body` text NOT NULL,
+  `active` int(1) DEFAULT 1,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) auto_increment=0,
   ENGINE=InnoDB DEFAULT CHARSET=utf8;
